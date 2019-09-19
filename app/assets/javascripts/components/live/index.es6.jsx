@@ -13,9 +13,10 @@ class LiveResults extends React.Component {
       '/races/get_live',
       (data) => {
         if(data != null) {
-          this.setState({race: data});
           RaceResultActions.setRace(data);
           RaceResultActions.startRace(new Date(data.started_at));
+          const startDates =  data.categories.map( obj=> new Date(obj.started_at))
+          this.setState({race: data, startDates});
         }
         else {
           this.setState({message: 'Nema aktivne utrke.'});
@@ -37,7 +38,9 @@ class LiveResults extends React.Component {
           <h1>{this.state.message}</h1>
           : null
         }
-        <RaceTime />
+        <div className="row" style={{textAlign: 'center'}}>
+        {this.state.startDates && this.state.startDates.map((rt, index) => (this.state.race.categories[index].started_at) ? <RaceTimeMultiple startDate={rt} name={this.state.race.categories[index].name} /> : '')}
+        </div>
         <hr/>
         {
           this.state.race ?

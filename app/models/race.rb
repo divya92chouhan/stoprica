@@ -1,7 +1,7 @@
 class Race < ApplicationRecord
 
   belongs_to :league, optional: true
-  belongs_to :pool
+  belongs_to :pool, optional: true
   
   has_many :race_results
   has_many :categories

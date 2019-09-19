@@ -15,7 +15,7 @@ namespace :db do
         email: Faker::Internet.email,
         country: Faker::Address.country_code
       )
-      start_number = StartNumber.create!(value: index, race: race)
+      start_number = StartNumber.create!(value: index, race_id: race.id)
       RaceResult.create!(race: race, racer: racer, category: (index % 2).zero? ? c_one : c_two, start_number: start_number)
     end
   end

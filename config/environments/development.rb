@@ -53,4 +53,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.react.variant = :development
+  config.i18n.default_locale = :en
+
+  config.i18n.available_locales = [:en, :hr]
 end

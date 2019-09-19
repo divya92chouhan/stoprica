@@ -29,6 +29,8 @@ gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
 gem 'countries', require: 'countries/global'
 gem 'country_select', require: 'country_select_without_sort_alphabetical'
 
+gem 'rails-i18n'
+
 # For excel exports..
 gem 'axlsx'
 

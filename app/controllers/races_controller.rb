@@ -69,8 +69,8 @@ class RacesController < ApplicationController
   def embed; end
 
   def get_live
-    race = Race.where.not(started_at: nil).where(ended_at: nil).first
-    render json: race
+    @race = Race.where.not(started_at: nil).where(ended_at: nil).first
+    render json: @race, include: json_includes, methods: :sorted_results
   end
 
   # GET /races/new
@@ -108,6 +108,7 @@ class RacesController < ApplicationController
     @race.save!
 
     if params[:ended_at].present? && @race.ended_at
+      @race.race_results.update_all(started_at: nil)
       @race.assign_positions
       @race.assign_points if @race.league&.xczld?
     end
